@@ -5,6 +5,7 @@
 To continue you need to have the following installed:
 - NodeJS >= 18.17.1
 - Playwright Test for VSCode plugin
+- Install playwright using `npm init playwright@latest`
 
 ## How PW works
 
