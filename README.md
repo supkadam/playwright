@@ -45,3 +45,33 @@ console.log("test") → process.stdout.write() → Terminal Output
 | **7**    | **XPath** (`//div[@id='x']`)                 | ✅ Powerful for complex DOM <br> ❌ Slow (evaluated in JS engine) <br> ❌ Hard to maintain. |
 | **8**    | **Chained selectors with nth-child**         | ❌ Very fragile (layout changes break it) <br> ❌ Hard to maintain.                     |
 
+## Different commands for playwright
+- Install - npm init playwright@latest
+- Run test - npx playwright test
+- Generate report - npx playwright show-report
+- To run tests in parallel - npx playwright test --workers 3 (3 tests running in parallel)
+- To run particular test -  npx playwright test .\tests\example.spec.ts
+- To run 2 or more specific files -  npx playwright test .\tests\one.spec.ts .\tests\two.spec.ts
+- To run test with specific title - npx playwright test -g “Add to cart”
+- To run test on single browser - npx playwright test —-project=chromium
+- To run test in headed mode  - npx playwright test —-project=chromium –-headed
+- To open the ui mode feature in playwright for debugging - npx playwright test —-ui
+- To install/upgrade playwright - npm install playwright --save-dev
+- To install playwright tests - npm install @playwright/test --save-dev
+
+## Playwright methods
+- to locate an element using id
+    - page.locator('#abc')
+    - page.locator('[id="abc"]')
+
+- to locate an element using class
+    - page.locator('.abc')
+    - page.locator('[class="abc"]')
+
+- to locate an element using value if id or class attribute is not there
+    - page.locator('[value="def"]')
+
+- to enter value inside textfield - fill()
+- to click on button - click()
+- to capture title of page - page.title()
+- to take screenshot of page - page.screenshot({path: 'homepage.png'})
