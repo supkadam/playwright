@@ -1,10 +1,10 @@
 import { test, expect, chromium, firefox, webkit } from '@playwright/test';
 
-test('Add to cart functionality', async () => {
+test('User should able to add item to cart', async () => {
     // Launch browser
     const browser = await chromium.launch({
-        headless: false, // Set to true for headless mode
-        channel: 'chrome', // Important: Launch actual Chrome, not bundled Chromium
+        headless: false,
+        channel: 'chrome',
     });
     
     // Create a new browser context and page
@@ -17,6 +17,10 @@ test('Add to cart functionality', async () => {
     // Test data
     const username = 'standard_user';
     const password = 'secret_sauce';
+    const itemCount = 2;
+    const firstname = 'abc';
+    const lastname = 'def';
+    const zipcode = '1334';
 
     // Login steps
     await page.locator('#user-name').fill(username);
@@ -27,7 +31,6 @@ test('Add to cart functionality', async () => {
     const items = page.locator('.inventory_item');
 
     // Add items to cart
-    const itemCount = 2;
     for (let i = 0; i < itemCount; i++) {
         const item = items.nth(i);
         const button = item.locator('.pricebar button');
@@ -44,10 +47,6 @@ test('Add to cart functionality', async () => {
     await page.locator('.checkout_button').click();
 
     // Fill details for checkout
-    const firstname = 'abc';
-    const lastname = 'def';
-    const zipcode = '1334';
-
     await page.locator('#first-name').fill(firstname);
     await page.locator('#last-name').fill(lastname);
     await page.locator('#postal-code').fill(zipcode);
