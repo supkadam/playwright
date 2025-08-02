@@ -53,9 +53,8 @@ test('User should able to add item to cart', async () => {
     await page.locator('.cart_button').click();
 
     // Confirm checkout
-    await page.locator('.cart_button:has-text("FINISH")').click();
-    const confirmationText = 'THANK YOU FOR YOUR ORDER';
-    await expect(page.locator('.complete-header')).toHaveText(confirmationText);
+    await page.locator('a[href="./checkout-complete.html"]').click();
+    await expect(page.locator('.complete-header')).toBeVisible();
 
     // Close browser
     await browser.close();

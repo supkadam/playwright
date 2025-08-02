@@ -11,6 +11,8 @@ test('Launch Chrome browser using Playwright', async () => {
   const context = await browser.newContext();
   const page = await context.newPage();
 
+  const page1 = await (await browser.newContext()).newPage();
+
   // Navigate to a URL
   await page.goto('https://www.google.com');
 
