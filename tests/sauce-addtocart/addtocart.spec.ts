@@ -33,9 +33,12 @@ test('User should able to add item to cart', async () => {
     // Add items to cart
     for (let i = 0; i < itemCount; i++) {
         const item = items.nth(i);
-        const button = item.locator('.pricebar button');
-        await button.click();
-        await expect(button).toHaveText('REMOVE');
+        const addToCartButton = item.locator('.pricebar button');
+        await addToCartButton.click();
+
+        //extra wait for remove button to appear
+        const removeButton = page.locator(".btn_secondary.btn_inventory").nth(i);
+        await expect(removeButton).toBeVisible();
     }
  
     // Verify cart count    
@@ -53,8 +56,8 @@ test('User should able to add item to cart', async () => {
     await page.locator('.cart_button').click();
 
     // Confirm checkout
-    await page.locator('a[href="./checkout-complete.html"]').click();
-    await expect(page.locator('.complete-header')).toBeVisible();
+    await page.locator('.btn_action.cart_button').click();
+    await expect(page.locator('#checkout_complete_container')).toBeVisible();
 
     // Close browser
     await browser.close();
