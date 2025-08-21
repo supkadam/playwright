@@ -1,3 +1,4 @@
 {
-    "baseURL" : "https://petstore3.swagger.io/api/v3"
+    "baseURL" : "https://petstore3.swagger.io/api/v3",
+    "standardApiResponseTimeout" : 1000
 }

@@ -1,40 +1,55 @@
-import {Page, expect} from '@playwright/test';
+import { Page, expect } from '@playwright/test';
+import { BaseUrl } from '../utils/BaseApi';
 
-// Page Object Model class representing login functionality
-export class LoginPage{
+/**
+ * Page Object Model class representing the Login page.
+ * Provides methods to interact with login elements and verify login success.
+ */
+export class LoginPage {
+  private page: Page;
 
-    // Declare class variables
-    private page: Page;
-    private usernameInput: string;
-    private passwordInput: string;
-    private loginButton: string;
-    private productLabel: string;
+  /**
+   * Initializes the LoginPage with a Playwright Page instance.
+   * @param page Playwright Page object
+   */
+  constructor(page: Page) {
+    this.page = page;
+  }
 
-    //Initialize element locators/x-path in constructor
-    constructor(page:Page){
-        this.page = page;
-        this.usernameInput = '#user-name';
-        this.passwordInput = '#password';
-        this.loginButton = '#login-button';
-        this.productLabel = '.product_label';
-    }
+  /** Locator for the username input field */
+  get usernameInput() { return this.page.locator('#user-name'); }
 
-    // Navigate to login/home page
-    async gotoLoginPage(){
-        await this.page.goto('https://www.saucedemo.com/v1/');
-    }
+  /** Locator for the password input field */
+  get passwordInput() { return this.page.locator('#password'); }
 
-    // login using provided username and password
-    async login(username:string,password:string){
-        await this.page.locator(this.usernameInput).fill(username);
-        await this.page.locator(this.passwordInput).fill(password);
-        await this.page.locator(this.loginButton).click();
-    }
+  /** Locator for the login button */
+  get loginButton() { return this.page.locator('#login-button'); }
 
-    // Verify successful user login
-    async verifyLogin(){
-        await expect(this.page.locator(this.productLabel)).toBeVisible();
-    }
+  /** Locator for the product label shown after successful login */
+  get productLabel() { return this.page.locator('.product_label'); }
+
+  /**
+   * Navigates to the login page.
+   */
+  async gotoLoginPage() {
+    await this.page.goto(BaseUrl.baseurl);
+  }
+
+  /**
+   * Logs in with the provided username and password.
+   * @param username The username to enter
+   * @param password The password to enter
+   */
+  async login(username: string, password: string) {
+    await this.usernameInput.fill(username);
+    await this.passwordInput.fill(password);
+    await this.loginButton.click();
+  }
+
+  /**
+   * Verifies that login was successful by checking if the product label is visible.
+   */
+  async verifyLogin() {
+    await expect(this.productLabel).toBeVisible();
+  }
 }
-
-
