@@ -1,0 +1,11 @@
+{
+    "baseurl": "https://www.saucedemo.com/v1/",
+    "headless": false,
+    "channel": "chrome",
+    "username": "standard_user",
+    "password" : "secret_sauce",
+    "productname" : "Sauce Labs Onesie",
+    "customerFirstName" : "Uma",
+    "customerLastName" : "Nair",
+    "customerPincode" : "10023"
+}

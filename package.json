@@ -17,6 +17,7 @@
   "homepage": "https://github.com/supkadam/playwright#readme",
   "devDependencies": {
     "@playwright/test": "^1.54.1",
-    "@types/node": "^24.1.0"
+    "@types/node": "^24.1.0",
+    "http-status-codes": "^2.3.0"
   }
 }
